@@ -36,7 +36,7 @@ namespace test2
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             DialogResult result = fbd.ShowDialog();
             Debug.Write(fbd.SelectedPath);
-          //  PrintableWatcher.Run(fbd.SelectedPath,"*.txt");
+           // PrintableWatcher.Run(fbd.SelectedPath,"*.txt");
         }
     }
 }

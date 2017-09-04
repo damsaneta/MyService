@@ -8,14 +8,13 @@ using System.ServiceProcess;
 using System.Text;
 using System.ServiceModel;
 using System.ServiceModel.Description;
-using System.Threading;
 using MyServiceUtilities;
 
 namespace MyPro
 {
     public partial class MyService : ServiceBase
     {
-        //private PrintAutomator printAutomator;
+        private PrintAutomator printAutomator;
 
         public MyService()
         {
@@ -24,17 +23,13 @@ namespace MyPro
 
         protected override void OnStart(string[] args)
         {
-            var t= new Thread(() => { 
-                var printAutomator = new PrintAutomator("*.txt", @"D:\Users\aneta\Desktop\test", "");
-                 printAutomator.StartWatching();
-            });
-            t.Start();
-            
+            printAutomator = new PrintAutomator("*.pdf|*.txt", @"D:\Users\aneta\Desktop", "");
+            printAutomator.StartWatching();
         }
 
         protected override void OnStop()
         {
-           // printAutomator.StartWatching();
+            printAutomator.StartWatching();
         }
     }
 }

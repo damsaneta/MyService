@@ -34,9 +34,6 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration.Install" />
@@ -75,14 +72,9 @@
       <Project>{7e869de5-24ee-4544-939b-9d9a87827857}</Project>
       <Name>MyServiceUtilities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Test3\Test3.csproj">
-      <Project>{d98c23e7-d19c-4cfc-a8a5-d562df7d7fff}</Project>
-      <Name>Test3</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="app.manifest" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

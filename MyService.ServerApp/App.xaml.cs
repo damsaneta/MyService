@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Test3
+namespace MyService.ServerApp
 {
     /// <summary>
     /// Interaction logic for App.xaml

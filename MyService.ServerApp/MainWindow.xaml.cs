@@ -12,9 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MyServiceUtilities;
 
-namespace Test3
+namespace MyService.ServerApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,9 +23,6 @@ namespace Test3
         public MainWindow()
         {
             InitializeComponent();
-
-            //var printAutomator = new PrintAutomator("*.txt", @"D:\Users\aneta\Desktop\test", "");
-            //printAutomator.StartWatching();
         }
     }
 }

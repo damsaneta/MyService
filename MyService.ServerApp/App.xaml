@@ -1,6 +1,7 @@
-﻿<Application x:Class="Test3.App"
+﻿<Application x:Class="MyService.ServerApp.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MyService.ServerApp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

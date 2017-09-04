@@ -24,16 +24,12 @@ namespace MyServiceUtilities
         public string PrinterName { get; private set; }
 
         public static void OnFileAdded(Object source, FileSystemEventArgs e)
-            // drukujemy w nowym procesie "e-sciezka do pliku", okno ma być niewidoczne
+            // drukujemy w nowym procesie "e-sciezka do pliku", okno ma być nie widoczne
         {
             var t = new Thread(() =>
             {
                 ProcessStartInfo info = new ProcessStartInfo();
                 info.Verb = "print";
-                info.UseShellExecute = false;
-                info.RedirectStandardOutput = true;
-                info.RedirectStandardInput = true;
-                info.RedirectStandardError = true;
                 info.FileName = e.FullPath;
                 info.CreateNoWindow = true;
                 info.WindowStyle = ProcessWindowStyle.Hidden;
@@ -42,7 +38,7 @@ namespace MyServiceUtilities
                 p.StartInfo = info;
                 p.Start();
                 p.WaitForInputIdle(); //czeka az plik sie załaduje
-                //System.Threading.Thread.Sleep(30000);
+                System.Threading.Thread.Sleep(30000);
                 if (!p.HasExited && false == p.CloseMainWindow())
                 {
                     p.Kill();
@@ -53,11 +49,7 @@ namespace MyServiceUtilities
 
         public void StartWatching()
         {
-            Debugger.Launch();
-            var t = new Thread(() => { 
-                printableWatcher.Run(Directory, FileType);
-            });
-            t.Start();
+            printableWatcher.Run(Directory, FileType);
         }
 
         public void StopWatching()
