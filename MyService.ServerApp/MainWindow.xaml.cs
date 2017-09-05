@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MyService.ServerApp.Model;
 
 namespace MyService.ServerApp
 {
@@ -20,9 +21,28 @@ namespace MyService.ServerApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static readonly IList<Promotion> Promotions = new List<Promotion>();
+
+        private Promotion current;
+
         public MainWindow()
         {
             InitializeComponent();
+            Promotions.Add(new Promotion() { Name = "przykładowy", MinimalCount = 7 });
+            this.grid.ItemsSource = Promotions;
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var addForm = new AddForm();
+            var result = addForm.ShowDialog();
+            if (result.HasValue && result.Value)
+            {
+                var toAdd = addForm.Model;
+                Promotions.Add(toAdd);
+                this.grid.ItemsSource = Promotions;
+                this.grid.Items.Refresh();
+            }
         }
     }
 }
