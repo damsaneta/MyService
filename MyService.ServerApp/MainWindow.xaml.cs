@@ -28,7 +28,7 @@ namespace MyService.ServerApp
         public MainWindow()
         {
             InitializeComponent();
-            Promotions.Add(new Promotion() { Name = "przykładowy", MinimalCount = 7 });
+            Promotions.Add(new Promotion() { Name = "przykładowy", MinimalCount = 7 , Id = new Guid()});
             this.grid.ItemsSource = Promotions;
         }
 
@@ -43,6 +43,11 @@ namespace MyService.ServerApp
                 this.grid.ItemsSource = Promotions;
                 this.grid.Items.Refresh();
             }
+        }
+
+        private void OnDelete(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

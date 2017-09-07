@@ -34,7 +34,7 @@ namespace MyService.ServerApp
             {
                 Id = Guid.NewGuid(),
                 Name = this.txbName.Text,
-                MinimalCount = (int)this.nudMinimalCount.Value
+                MinimalCount = int.Parse(this.nudMinimalCount.Text)
             };
             this.DialogResult = true;
             this.Close();
