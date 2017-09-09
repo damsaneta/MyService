@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using MyService.ServerApp.Model;
+using MyService.Application.Model;
 
 namespace MyService.ServerApp
 {
@@ -32,7 +32,6 @@ namespace MyService.ServerApp
 
             this.Model = new Promotion
             {
-                Id = Guid.NewGuid(),
                 Name = this.txbName.Text,
                 MinimalCount = int.Parse(this.nudMinimalCount.Text)
             };

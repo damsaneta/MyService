@@ -1,18 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MyService.ServerApp.Model;
+using MyService.Application.Respositories;
 
 namespace MyService.ServerApp
 {
@@ -21,15 +10,12 @@ namespace MyService.ServerApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static readonly IList<Promotion> Promotions = new List<Promotion>();
-
-        private Promotion current;
+        private readonly IPromotionRepository promotionRepository = new PromotionRepository(); 
 
         public MainWindow()
         {
             InitializeComponent();
-            Promotions.Add(new Promotion() { Name = "przykładowy", MinimalCount = 7 , Id = new Guid()});
-            this.grid.ItemsSource = Promotions;
+            this.RefreshGrid();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -39,15 +25,28 @@ namespace MyService.ServerApp
             if (result.HasValue && result.Value)
             {
                 var toAdd = addForm.Model;
-                Promotions.Add(toAdd);
-                this.grid.ItemsSource = Promotions;
-                this.grid.Items.Refresh();
+                this.promotionRepository.Add(toAdd);
+                this.RefreshGrid();
             }
         }
 
         private void OnDelete(object sender, RoutedEventArgs e)
         {
-            
+            var id = ((Button) sender).CommandParameter as string;
+            this.promotionRepository.Delete(id);
+            this.RefreshGrid();
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            this.RefreshGrid();
+        }
+
+        private void RefreshGrid()
+        {
+            var promotions = this.promotionRepository.GetAll();
+            this.grid.ItemsSource = promotions;
+            this.grid.Items.Refresh();
         }
     }
 }

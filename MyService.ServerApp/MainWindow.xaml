@@ -5,20 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyService.ServerApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="630" Background="#1d1d1d">
+        Title="MainWindow" Height="350" Width="470.108" Background="#1d1d1d">
     <Grid>
 
         <DataGrid x:Name="grid" CanUserAddRows="False" Style="{DynamicResource DataGridStyle}"  AutoGenerateColumns="False"   Margin="20,0,20.4,0"   VerticalAlignment="Top" GridLinesVisibility="Vertical" FontFamily="Segoe Ui Light" HeadersVisibility="Column" Foreground="Silver" RowBackground="#2a2a2a"
 			AlternatingRowBackground="DimGray" RowHeight="20" HorizontalAlignment="Stretch"
 			BorderBrush="#1d1d1d" Background="#1d1d1d" Height="254">
             <DataGrid.Columns>
-              
-                <DataGridTextColumn Width="100" Header="Name" Binding="{Binding Name}" />
-                <DataGridTextColumn Width="100" Header="MinimalCount" Binding="{Binding MinimalCount}" />
-                <DataGridTextColumn Width="100" Header="CurrentCount" Binding="{Binding CurrentCount}" />
-                <DataGridTextColumn Width="100" Header="IsCancelled" Binding="{Binding IsCancelled}" />
-                <DataGridTextColumn Width="100" Header="IsActive" Binding="{Binding IsActive}" />
-                <DataGridTemplateColumn Header="Delete" Width="50">
+
+                <DataGridTextColumn Width="100" Header="Nazwa" Binding="{Binding Name}" />
+                <DataGridTextColumn Width="100" Header="Minimalna Ilość" Binding="{Binding MinimalCount}" />
+                <DataGridTextColumn Width="100" Header="Aktualna Ilość" Binding="{Binding CurrentCount}" />
+                <DataGridTemplateColumn Header="Akcje" Width="50">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Usuń" CommandParameter="{Binding Path=Id}"  Click="OnDelete"/>
@@ -34,6 +32,11 @@
                 </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="BtnAdd"  FontFamily="Segoe Ui Light" Background="#1ba1e2" BorderBrush="#1ba1e2" Foreground="White"  FontSize="18" Content="DODAJ" HorizontalAlignment="Right" Margin="0,273,10.4,9.8" VerticalAlignment="Center" Width="192" Click="btnAdd_Click" Height="38"/>
+        <Button x:Name="BtnAdd"  FontFamily="Segoe Ui Light" Background="#1ba1e2" BorderBrush="#1ba1e2" Foreground="White"  FontSize="18" HorizontalAlignment="Right" Margin="0,273,10.4,9.8" VerticalAlignment="Center" Width="192" Click="btnAdd_Click" Height="38">
+            <Button x:Name="button" Content="Dodaj" Width="75"/>
+        </Button>
+        <Button x:Name="BtnRefresh"  FontFamily="Segoe Ui Light" Background="#1ba1e2" BorderBrush="#1ba1e2" Foreground="White"  FontSize="18" HorizontalAlignment="Right" Margin="0,273,229,9.8" VerticalAlignment="Center" Width="192" Click="btnRefresh_Click" Height="38">
+            <Button x:Name="button1" Content="Odśwież&#xD;&#xA;" Width="75" />
+        </Button>
     </Grid>
 </Window>
