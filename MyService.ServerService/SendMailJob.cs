@@ -44,8 +44,10 @@ namespace MyService.ServerService
                         this.SendMailOnPromotionDeleted(promotionEvent);
                         break;
                     case PromotionEventType.PromotionBought:
+                        this.eventRepository.MarkPromotionEventAsHandled(promotionEvent.Id);
                         break;
                     case PromotionEventType.PromotionActivated:
+                        this.SendMailOnPromotionActivated(promotionEvent);
                         break;
                     default:
                         continue;
@@ -76,6 +78,14 @@ namespace MyService.ServerService
             var user = this.userRepository.Get(userEvent.UserId);
             this.SendEmail("Użytkownik utworzony", "", user.Email);
             this.eventRepository.MarkUserEventAsHandled(userEvent.Id);
+        }
+
+        private void SendMailOnPromotionActivated(PromotionEvent promotionEvent)
+        {
+            var promotion = this.promotionRepository.Get(promotionEvent.PromotionId);
+            var users = this.userRepository.GetAll();
+            this.SendEmail("Promocja została aktywowana: " + promotion.Name, "", users.Select(x => x.Email).ToArray());
+            this.eventRepository.MarkPromotionEventAsHandled(promotionEvent.Id);
         }
 
         private void SendEmail(string subject, string body, params string[] emails)

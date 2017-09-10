@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyService.ClientApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="470.108" Background="#1d1d1d">
     <Grid>
-        
+        <DataGrid x:Name="grid" CanUserAddRows="False" Style="{DynamicResource DataGridStyle}"  AutoGenerateColumns="False"   Margin="10,10,30.4,0"   VerticalAlignment="Top" GridLinesVisibility="Vertical" FontFamily="Segoe Ui Light" HeadersVisibility="Column" Foreground="Silver" RowBackground="#2a2a2a"
+			AlternatingRowBackground="DimGray" RowHeight="20" HorizontalAlignment="Stretch"
+			BorderBrush="#1d1d1d" Background="#1d1d1d" Height="254">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Width="100" Header="Nazwa" Binding="{Binding Name}" />
+                <DataGridTextColumn Width="100" Header="Minimalna Ilość" Binding="{Binding MinimalCount}" />
+                <DataGridTextColumn Width="100" Header="Aktualna Ilość" Binding="{Binding CurrentCount}" />
+                <DataGridTemplateColumn Header="Akcje" Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Zamów" CommandParameter="{Binding Path=Id}"  Click="Order"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Order.cs" />
     <Compile Include="Model\Promotion.cs" />
     <Compile Include="Model\PromotionEvent.cs" />
     <Compile Include="Model\PromotionEventType.cs" />
@@ -59,8 +60,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Respositories\EventRepository.cs" />
     <Compile Include="Respositories\IEventRepository.cs" />
+    <Compile Include="Respositories\IOrderRepository.cs" />
     <Compile Include="Respositories\IPromotionRepository.cs" />
     <Compile Include="Respositories\IUserRepository.cs" />
+    <Compile Include="Respositories\OrderRepository.cs" />
     <Compile Include="Respositories\PromotionRepository.cs" />
     <Compile Include="Respositories\RavenDocumentStore.cs" />
     <Compile Include="Respositories\UserRepository.cs" />

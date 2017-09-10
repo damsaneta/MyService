@@ -23,13 +23,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--<DataGridTemplateColumn Header="Actions" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Content="Remove Row" Command="Delete"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="BtnAdd"  FontFamily="Segoe Ui Light" Background="#1ba1e2" BorderBrush="#1ba1e2" Foreground="White"  FontSize="18" HorizontalAlignment="Right" Margin="0,273,10.4,9.8" VerticalAlignment="Center" Width="192" Click="btnAdd_Click" Height="38">

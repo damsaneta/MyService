@@ -21,5 +21,20 @@ namespace MyService.ClientApp
             User result = JsonConvert.DeserializeObject<User>(content);
             return result;
         }
+
+        public static async Task<IList<Promotion>> GetPromotions()
+        {
+            HttpResponseMessage response = await Client.GetAsync("Promotions");
+            response.EnsureSuccessStatusCode();
+            string content = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<Promotion>>(content);
+            return result;
+        }
+
+        public static async Task MakeOrder(string userId, string promotionId)
+        {
+            HttpResponseMessage response = await Client.PostAsJsonAsync("Orders", new Order() { UserId = userId, PromotionId = promotionId});
+            response.EnsureSuccessStatusCode();
+        }
     }
 }

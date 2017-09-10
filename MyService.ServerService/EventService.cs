@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Configuration;
 using System.Diagnostics;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
-using System.Threading;
 using System.Timers;
 using Timer = System.Timers.Timer;
 
@@ -14,10 +9,11 @@ namespace MyService.ServerService
 {
     public partial class EventService : ServiceBase
     {
-        private readonly Timer timer = new Timer(10000);
+        private readonly Timer timer;
         public EventService()
         {
             InitializeComponent();
+            this.timer = new Timer(int.Parse(ConfigurationManager.AppSettings["Interval"]));
             this.timer.Elapsed += TimerOnElapsed;
             timer.Start();
         }
@@ -29,8 +25,9 @@ namespace MyService.ServerService
             {
                 job.DoJob();
             }
-            catch (Exception)
+            catch (Exception exc)
             {
+                this.EventLog.WriteEntry(exc.ToString(), EventLogEntryType.Error);
             }
         }
 

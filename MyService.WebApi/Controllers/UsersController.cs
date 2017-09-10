@@ -14,10 +14,5 @@ namespace MyService.WebApi.Controllers
             user = this.userRepository.GetOrAdd(user.Email);
             return this.Ok(user);
         }
-
-        public IHttpActionResult Get(int id)
-        {
-            return this.Ok("Ok");
-        }
     }
 }

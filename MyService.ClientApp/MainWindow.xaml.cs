@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Microsoft.Win32;
 using MyService.Application.Model;
 
@@ -16,8 +19,10 @@ namespace MyService.ClientApp
         public MainWindow()
         {
             InitializeComponent();
-            var t = Task.Run(() => this.ReadEmail());
-            Task.WaitAll(t);
+            var t1 = Task.Run(() => this.ReadEmail());
+            
+            Task.WaitAll(t1);
+            this.RefreshGrid();
         }
 
         private async Task ReadEmail()
@@ -26,6 +31,7 @@ namespace MyService.ClientApp
                 ?? Registry.CurrentUser.CreateSubKey(keyName))
             {
                 var email = registry.GetValue("Email") as string;
+                // TODO: popup z logowaniem (tylko email)
                 if (email == null)
                 {
                     email = "damsaneta@gmail.com";
@@ -34,6 +40,20 @@ namespace MyService.ClientApp
                 registry.SetValue("Email", email, RegistryValueKind.String);
                 CurrentUser = await DataHelper.RegisterUser(email);
             }
+        }
+
+        private async Task RefreshGrid()
+        {
+            var promotions = await DataHelper.GetPromotions();
+            this.grid.ItemsSource = promotions;
+            this.grid.Items.Refresh();
+        }
+
+        private async void Order(object sender, RoutedEventArgs e)
+        {
+            var id = ((Button)sender).CommandParameter as string;
+            await DataHelper.MakeOrder(CurrentUser.Id, id);
+            await this.RefreshGrid();
         }
     }
 }
