@@ -38,5 +38,13 @@ namespace MyService.Application.Respositories
                 session.SaveChanges();
             }
         }
+
+        public Promotion Get(string id)
+        {
+            using (var session = RavenDocumentStore.Store.OpenSession())
+            {
+                return session.Load<Promotion>(id);
+            }
+        }
     }
 }

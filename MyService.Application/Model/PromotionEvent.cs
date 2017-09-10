@@ -2,6 +2,10 @@
 {
     public class PromotionEvent
     {
+        public PromotionEvent()
+        {   
+        }
+
         public PromotionEvent(string promotionId, PromotionEventType promotionEventType)
         {
             this.PromotionId = promotionId;

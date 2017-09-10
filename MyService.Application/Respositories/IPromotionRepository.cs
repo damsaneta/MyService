@@ -10,5 +10,7 @@ namespace MyService.Application.Respositories
         void Delete(string id);
 
         void Add(Promotion promotion);
+
+        Promotion Get(string id);
     }
 }
